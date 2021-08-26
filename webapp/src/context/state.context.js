@@ -1,21 +1,47 @@
-import React, { useEffect } from 'react'
+import React, {
+  createContext,
+  useReducer,
+  useMemo,
+  useContext,
+  useEffect
+} from 'react'
+import { ConnectWallet } from '@proton/web-sdk'
 import PropTypes from 'prop-types'
 
-const SharedStateContext = React.createContext()
+import { sdkConfig } from '../config'
 
+const SharedStateContext = createContext()
 const initialValue = {
   useDarkMode: false,
-  user: null
+  user: null,
+  isActiveSession: localStorage.getItem('isActiveSession')
+}
+
+const loginWallet = async (restoreSession = false) => {
+  try {
+    const { link, session } = await ConnectWallet({
+      linkOptions: {
+        endpoints: sdkConfig.endpoint,
+        restoreSession
+      },
+      transportOptions: {
+        requestStatus: true
+      },
+      selectorOptions: {
+        appName: sdkConfig.appName,
+        appLogo: sdkConfig.appLogo,
+        customStyleOptions: sdkConfig.customStyleOptions
+      }
+    })
+
+    return { link, session }
+  } catch (error) {
+    throw new Error(`Error on init login wallet: ${error}`)
+  }
 }
 
 const sharedStateReducer = (state, action) => {
   switch (action.type) {
-    case 'ual':
-      return {
-        ...state,
-        ual: action.ual
-      }
-
     case 'userChange':
       return {
         ...state,
@@ -42,14 +68,10 @@ const sharedStateReducer = (state, action) => {
       }
 
     case 'login':
-      state.ual.showModal()
-
-      return state
+      return { ...state, user: action.payload }
 
     case 'logout':
-      state.ual.logout()
-
-      return state
+      return { ...state, user: null }
 
     default: {
       throw new Error(`Unsupported action type: ${action.type}`)
@@ -57,21 +79,34 @@ const sharedStateReducer = (state, action) => {
   }
 }
 
-export const SharedStateProvider = ({ children, ual, ...props }) => {
-  const [state, dispatch] = React.useReducer(sharedStateReducer, {
-    ...initialValue,
-    ual
+export const SharedStateProvider = ({ children, ...props }) => {
+  const [state, dispatch] = useReducer(sharedStateReducer, {
+    ...initialValue
   })
-  const value = React.useMemo(() => [state, dispatch], [state])
+  const value = useMemo(() => [state, dispatch], [state])
 
   useEffect(() => {
-    const load = async () => {
-      dispatch({ type: 'userChange', user: ual.activeUser })
-      dispatch({ type: 'ual', ual })
+    const restoreSession = async () => {
+      try {
+        if (state.isActiveSession === 'true') {
+          const { link, session } = await loginWallet(true)
+
+          dispatch({
+            type: 'login',
+            payload: {
+              link,
+              session,
+              accountName: session?.auth?.actor || ''
+            }
+          })
+        }
+      } catch (error) {
+        console.error(error)
+      }
     }
 
-    load()
-  }, [ual?.activeUser])
+    restoreSession()
+  }, [])
 
   return (
     <SharedStateContext.Provider value={value} {...props}>
@@ -81,12 +116,11 @@ export const SharedStateProvider = ({ children, ual, ...props }) => {
 }
 
 SharedStateProvider.propTypes = {
-  children: PropTypes.node,
-  ual: PropTypes.any
+  children: PropTypes.node
 }
 
 export const useSharedState = () => {
-  const context = React.useContext(SharedStateContext)
+  const context = useContext(SharedStateContext)
 
   if (!context) {
     throw new Error(`useSharedState must be used within a SharedStateContext`)
@@ -96,8 +130,36 @@ export const useSharedState = () => {
   const setState = payload => dispatch({ type: 'set', payload })
   const showMessage = payload => dispatch({ type: 'showMessage', payload })
   const hideMessage = () => dispatch({ type: 'hideMessage' })
-  const login = () => dispatch({ type: 'login' })
-  const logout = () => dispatch({ type: 'logout' })
+  const login = async () => {
+    try {
+      const { link, session } = await loginWallet(false)
+
+      dispatch({
+        type: 'login',
+        payload: {
+          link,
+          session,
+          accountName: session?.auth?.actor || ''
+        }
+      })
+      localStorage.setItem('isActiveSession', true)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  const logout = async () => {
+    try {
+      await state.user.link.removeSession(
+        sdkConfig.appName,
+        state.user.session.auth
+      )
+
+      dispatch({ type: 'logout' })
+      localStorage.setItem('isActiveSession', false)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return [state, { setState, showMessage, hideMessage, login, logout }]
 }
