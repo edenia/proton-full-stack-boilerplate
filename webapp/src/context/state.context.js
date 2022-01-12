@@ -9,7 +9,7 @@ import ProtonWebSDK from '@proton/web-sdk'
 import PropTypes from 'prop-types'
 
 import { sdkConfig } from '../config'
-
+// Test
 const SharedStateContext = createContext()
 const initialValue = {
   useDarkMode: false,
