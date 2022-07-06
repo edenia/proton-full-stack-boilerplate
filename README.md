@@ -57,7 +57,7 @@ cp .env.example .env
 ## Quick Start
 
 1.  Clone this repo using `git clone --depth=1 https://github.com/eoscostarica/full-stack-boilerplate.git <YOUR_PROJECT_NAME>`.
-2.  Move to the appropriate directory: `cd <YOUR_PROJECT_NAME>`.
+2.  Move to the appropriate directory: `cd full-stack-boilerplate`.
 3.  Run `make run` in order to start the project using docker compose.
 
 At this point you can navigate to `http://localhost:3000`.
