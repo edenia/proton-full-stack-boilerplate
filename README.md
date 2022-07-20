@@ -2,7 +2,7 @@
 
 <div align="center">
 	<a href="https://edenia.com">
-		<img src="https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png" width="300">
+		<img src="https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png" width="300" alt="Edenia Logo">
 	</a>
 </p>
 
@@ -166,7 +166,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 <div align="center">
 
 <a href="https://edenia.com">
-	<img width="300" alt="image" src="https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png"></img>
+	<img width="300" alt="Edenia Logo" src="https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png"></img>
 </a>
 
 [![Twitter](https://img.shields.io/twitter/follow/EdeniaWeb3?style=for-the-badge)](https://twitter.com/EdeniaWeb3)
