@@ -33,3 +33,4 @@ resources/**/*
 !.yarn/plugins
 !*/.yarn/plugins
 .pnp.*
+dist
