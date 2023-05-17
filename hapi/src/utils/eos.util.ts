@@ -114,7 +114,7 @@ const newAccount = async (accountName: string) => {
   }
 }
 
-const generateRandomAccountName = async (prefix = '') => {
+const generateRandomAccountName = async (prefix = ''): Promise<string> => {
   const length = 12
 
   if (prefix.length === 12) return prefix

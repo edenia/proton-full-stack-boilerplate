@@ -1,9 +1,9 @@
 {
   "name": "backend-boilerplate",
   "version": "1.0.0",
-  "description": "Assit Eden Election to call required actions automatically",
+  "description": "AntelopeIO Boilerplate for backend development",
   "main": "dist/index.js",
-  "author": "Leister Francisco Alvarez Campos",
+  "author": "edenia.com",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
@@ -29,7 +29,6 @@
     "node-fetch": "^3.3.1"
   },
   "devDependencies": {
-    "@types/hapi__hapi": "^21.0.0",
     "@types/node": "^20.1.5",
     "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",

@@ -15,26 +15,27 @@
 
 ## Edenia Boilerplate
 
-A highly scalable skeleton with best practices, fullstack monorepo containing our front end and backend boilerplates and WAX JS integration.
+A highly scalable skeleton with best practices, fullstack monorepo containing our front end and backend boilerplates.
 
-- [Edenia Boilerplate](#edenia-boilerplate)
-- [Features!](#features)
-- [Installation](#installation)
-  - [Getting Started](#getting-started)
-  - [First Time](#first-time)
-  - [Quick Start](#quick-start)
-- [File Structure](#file-structure)
-- [Technical Documentation](#technical-documentation)
-  - [Infrastructure Diagram](#infrastructure-diagram)
-  - [Technologies Specification](#technologies-specification)
-    - [Kubernetes Cluster](#kubernetes-cluster)
-    - [Web Application](#web-application)
-    - [Backend](#backend)
-      - [Hasura GraphQL Server](#hasura-graphql-server)
-      - [Hapi REST Server](#hapi-rest-server)
-    - [EOSIO Blockchain Technology Integration](#eosio-blockchain-technology-integration)
-- [Contributing](#contributing)
-  - [About Edenia](#about-edenia)
+- [Proton Full Stack Boilerplate](#proton-full-stack-boilerplate)
+  - [Edenia Boilerplate](#edenia-boilerplate)
+  - [Features!](#features)
+  - [Installation](#installation)
+    - [Getting Started](#getting-started)
+    - [First Time](#first-time)
+    - [Quick Start](#quick-start)
+  - [File Structure](#file-structure)
+  - [Technical Documentation](#technical-documentation)
+    - [Infrastructure Diagram](#infrastructure-diagram)
+    - [Technologies Specification](#technologies-specification)
+      - [Kubernetes Cluster](#kubernetes-cluster)
+      - [Web Application](#web-application)
+      - [Backend](#backend)
+        - [Hasura GraphQL Server](#hasura-graphql-server)
+        - [Hapi REST Server](#hapi-rest-server)
+      - [EOSIO Blockchain Technology Integration](#eosio-blockchain-technology-integration)
+  - [Contributing](#contributing)
+    - [About Edenia](#about-edenia)
 
 ## Features!
 
