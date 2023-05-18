@@ -5,7 +5,7 @@ import React, {
   useContext,
   useEffect
 } from 'react'
-import { ConnectWallet } from '@proton/web-sdk'
+import ProtonWebSDK from '@proton/web-sdk'
 import PropTypes from 'prop-types'
 
 import { sdkConfig } from '../config'
@@ -19,7 +19,7 @@ const initialValue = {
 
 const loginWallet = async (restoreSession = false) => {
   try {
-    const { link, session } = await ConnectWallet({
+    const { link, session } = await ProtonWebSDK({
       linkOptions: {
         endpoints: sdkConfig.endpoint,
         restoreSession
