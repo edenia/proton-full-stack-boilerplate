@@ -49,8 +49,6 @@ This boilerplate features all the latest technologies and practices in the indus
 
 ## Installation
 
-This project is configured with Yarn 2, so you need to install it first, you can follow the instructions [here](https://yarnpkg.com/getting-started/install).
-
 ### Getting Started
 
 Some things you need before getting started:
@@ -60,7 +58,6 @@ Some things you need before getting started:
 - [Docker](https://www.docker.com/)
 - [docker-compose](https://docs.docker.com/compose/)
 - [Hasura CLI](https://hasura.io/docs/latest/hasura-cli/install-hasura-cli)
-- [Yarn 2](https://yarnpkg.com/getting-started/install)
 
 ### First Time
 
